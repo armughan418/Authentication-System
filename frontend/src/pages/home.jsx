@@ -11,7 +11,6 @@ function Home() {
 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
-      {/* Gradient Box with Shadow */}
       <div className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 rounded-3xl shadow-2xl p-10 w-full max-w-md text-center">
         <h1 className="text-4xl font-bold text-white mb-6 drop-shadow-lg">
           Hello from Home
