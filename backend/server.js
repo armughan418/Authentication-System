@@ -3,10 +3,16 @@ const express = require("express");
 const cors = require("cors");
 const getConnection = require("./utils/getConnection");
 const userRoutes = require("./routes/userRoute");
-const mongoose = require("mongoose");
 
 const app = express();
-app.use(cors());
+
+app.use(
+  cors({
+    origin: "*",
+    credentials: true,
+  })
+);
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true, limit: "50mb" }));
 
@@ -19,6 +25,9 @@ app.use((err, req, res, next) => {
 });
 
 getConnection();
-app.listen(process.env.PORT, () =>
-  console.log(`Server is up and running on port: ${process.env.PORT}` || 5000)
-);
+
+const PORT = process.env.PORT || 5000;
+
+app.listen(PORT, () => {
+  console.log(`Server is up and running on port: ${PORT}`);
+});
