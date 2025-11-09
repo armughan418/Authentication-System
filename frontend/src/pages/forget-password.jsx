@@ -81,7 +81,7 @@ function ForgetPassword() {
             Remember your password?{" "}
             <button
               className="font-semibold hover:underline"
-              onClick={() => navigate("/login")}
+              onClick={() => navigate("/")}
             >
               Login
             </button>
