@@ -8,11 +8,11 @@ const userSchema = new mongoose.Schema(
 
     otp: {
       otp: { type: String },
-      sendTime: { type: Number }, // OTP expiry time
+      sendTime: { type: Number },
       token: { type: String },
     },
   },
-  { timestamps: true }
+  { timestamps: true },
 );
 
 module.exports = mongoose.model("User", userSchema);

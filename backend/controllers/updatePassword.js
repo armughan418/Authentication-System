@@ -7,7 +7,6 @@ const updatePassword = async (req, res) => {
   try {
     console.log("Incoming Data => ", { password, confirmPassword, token });
 
-    // user find with token
     const findedUser = await User.findOne({ "otp.token": token });
     console.log("Finded User => ", findedUser);
 
@@ -18,7 +17,6 @@ const updatePassword = async (req, res) => {
       });
     }
 
-    // Token expiry check (5 minutes)
     if (
       new Date(findedUser.otp.sendTime).getTime() + 5 * 60 * 1000 <
       Date.now()
@@ -29,7 +27,6 @@ const updatePassword = async (req, res) => {
       });
     }
 
-    // password match check
     if (password !== confirmPassword) {
       return res.status(400).json({
         message: "Password and Confirm Password must be same",
@@ -37,11 +34,9 @@ const updatePassword = async (req, res) => {
       });
     }
 
-    // Hash password
     const hashedPassword = await bcrypt.hash(password, 10);
     findedUser.password = hashedPassword;
 
-    // clear otp fields
     findedUser.otp.sendTime = null;
     findedUser.otp.token = null;
 
