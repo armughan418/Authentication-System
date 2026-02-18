@@ -7,13 +7,10 @@ const userRoutes = require("./routes/userRoute");
 const app = express();
 
 app.use(
-  app.use(
   cors({
-    origin: ["https://authentication-system-hdk6.vercel.app"],
+    origin: process.env.Frontend_URL,
     credentials: true,
-  })
-);
-
+  }),
 );
 
 app.use(express.json());
